@@ -36,6 +36,10 @@ SOFTWARE.
 #include <unistd.h>
 #include <syslog.h>
 
+#if PY_VERSION_HEX >= 0x03070000 && !defined(PyEval_ThreadsInitialized)
+#define PyEval_ThreadsInitialized() 1
+#endif
+
 static int gpio_warnings = 1;
 
 struct py_callback
